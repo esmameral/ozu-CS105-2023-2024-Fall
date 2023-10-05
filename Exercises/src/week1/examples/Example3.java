@@ -16,7 +16,6 @@ public class Example3 {
 
 	public static void main(String[] args) {
 		int number = 9832;
-
 		// Use only following operators: / , %
 
 		int digit1 = number % 10;
