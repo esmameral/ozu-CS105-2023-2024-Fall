@@ -31,5 +31,6 @@ public class Question15_with_while {
 		System.out.println("Avg:"+avg);	
 
 	}
+	
 
 }

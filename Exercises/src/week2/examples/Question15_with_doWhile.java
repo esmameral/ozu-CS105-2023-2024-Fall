@@ -10,7 +10,7 @@ import java.util.Scanner;
 //average of the numbers to the screen.
 //Solve the problem using both "while" and "do-while"
 
-public class Question16_with_doWhile {
+public class Question15_with_doWhile {
 
 	public static void main(String[] args) {
 		Scanner input=new Scanner(System.in);
@@ -23,13 +23,12 @@ public class Question16_with_doWhile {
 			//add number to total
 			total+=value;//total=total+value;
 			count++;//count=count+1;
-		}while(total<100);
+		}while(total<=100);
 		
 		System.out.println("Total:"+total);	
 		System.out.println("Count:"+count);	
 		double avg=1.0*total/count;
 		System.out.println("Avg:"+avg);	
-
 	}
 
 }
