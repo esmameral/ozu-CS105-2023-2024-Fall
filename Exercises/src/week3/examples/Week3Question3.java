@@ -9,17 +9,29 @@ import java.util.Scanner;
 public class Week3Question3 {
 
 	public static void main(String[] args) {
-		Scanner input=new Scanner(System.in);
-		System.out.println("Enter length:");
-		int n=input.nextInt();
-		int[] numbers=new int[n];
+
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the array length:");
+		int n = input.nextInt();
+		int[] numbers = new int[n];
+		int count=0;
 		System.out.println("Enter values:");
 		for (int i = 0; i < n; i++) {
-			numbers[i]=input.nextInt();
-			
-			
+			numbers[i] = input.nextInt();
+			if(numbers[i]%5==0)
+				count++;
 		}
-
+		int[] divisibleBy5=new int[count];
+		int j=0;
+		for (int i = 0; i < n; i++) {
+			
+			if(numbers[i]%5==0) {
+				divisibleBy5[j]=numbers[i];
+				j++;
+			}
+		}
+		
+		System.out.println();
 	}
 
 }
