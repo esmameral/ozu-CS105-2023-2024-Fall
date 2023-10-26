@@ -1,5 +1,7 @@
 package week1.examples;
 
+import weeek4.examples.BankAccount;
+
 /*
  * Question1:
  * Write a java program that calculates the average of three integers. 
@@ -8,6 +10,7 @@ package week1.examples;
 public class Example1 {
 
 	public static void main(String[] args) {
+		
 		int firstNumber=7;
 		int secondNumber=10;
 		int thirdNumber=5;
