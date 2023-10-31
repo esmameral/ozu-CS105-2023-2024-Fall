@@ -1,6 +1,6 @@
-package weeek5.examples.test;
+package week5.examples.test;
 
-import weeek5.examples.BankAccount;
+import week5.examples.BankAccount;
 
 public class TestBankAccountCountFields {
 

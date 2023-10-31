@@ -1,4 +1,4 @@
-package weeek5.examples.test;
+package week5.examples.test;
 
 import weeek4.examples.BankAccount;
 

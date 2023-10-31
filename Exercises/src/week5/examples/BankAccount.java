@@ -1,4 +1,4 @@
-package weeek5.examples;
+package week5.examples;
 
 public class BankAccount {
 	private int accountNumber;
