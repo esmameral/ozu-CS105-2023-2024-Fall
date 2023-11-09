@@ -1,4 +1,7 @@
-package week6.examples;
+package week6.examples.test;
+
+import week6.examples.Person;
+import week6.examples.User;
 
 public class TestObjectOperators {
 
