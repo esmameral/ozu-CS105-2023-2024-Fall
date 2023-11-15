@@ -1,5 +1,7 @@
 package week5.examples;
 
+import week6.examples.Person;
+
 public class BankAccount {
 	private int accountNumber;
 	private String ownerName;
@@ -10,6 +12,8 @@ public class BankAccount {
 	private int negativeBalanceCount;
 
 	public BankAccount() {
+		Person p=new Person();
+		
 
 	}
 
