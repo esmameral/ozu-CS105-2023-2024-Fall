@@ -62,6 +62,55 @@ public class BankAccount {
 		return true;
 	}
 
+	/*
+	 * PLEASE READ: Creating a new method for each type of Transactions is the worst
+	 * way. When you need to add a new Transaction type you have to update
+	 * BankAccount class and add a new post method
+	 * 
+	 */
+//	public void post(WithdrawalTransaction withdrawalTransaction) {
+//		withdraw(withdrawalTransaction.getAmount());
+//		if(trxIndexNumber<=transactions.length-1) {
+//			transactions[trxIndexNumber] = withdrawalTransaction;
+//			trxIndexNumber++;
+//		}else {
+//			System.out.println("You cannot add new transactions!!!");
+//		}
+//	}
+//
+//	public void post(DepositTransaction depositTransaction) {
+//		deposit(depositTransaction.getAmount());
+//		if(trxIndexNumber<=transactions.length-1) {
+//			transactions[trxIndexNumber] = depositTransaction;
+//			trxIndexNumber++;
+//		}else {
+//			System.out.println("You cannot add new transactions!!!");
+//		}
+//	}
+	
+	/*
+	 * Using polymorphism
+	 * We will define only one method. updating balance must be provided by 
+	 * Transaction itself
+	 * 
+	 */
+	public void post(Transaction trx) {
+//		if(trx instanceof DepositTransaction)
+//			deposit(trx.getAmount())
+//			else if (trx instanceof WithdrawalTransaction)
+//				withdraw(trx.getAmount())
+				
+		trx.update(this);
+		
+	}
+	
+	public void printTransactions() {
+		for (Transaction trx : transactions) {
+			if (trx != null)
+				System.out.println(trx);
+		}
+	}
+	
 	public double getMaxDeposit() {
 		return maxDeposit;
 	}
@@ -142,40 +191,7 @@ public class BankAccount {
 		this.transactions = transactions;
 	}
 
-	/*
-	 * PLEASE READ: Creating a new method for each type of Transactions is the worst
-	 * way. When you need to add a new Transaction type you have to update
-	 * BankAccount class and add a new post method
-	 * 
-	 */
-	public void post(WithdrawalTransaction withdrawalTransaction) {
-		withdraw(withdrawalTransaction.getAmount());
-		if(trxIndexNumber<=transactions.length-1) {
-			transactions[trxIndexNumber] = withdrawalTransaction;
-			trxIndexNumber++;
-		}else {
-			System.out.println("You cannot add new transactions!!!");
-		}
-		
-	}
+	
 
-	public void post(DepositTransaction depositTransaction) {
-		deposit(depositTransaction.getAmount());
-		if(trxIndexNumber<=transactions.length-1) {
-			transactions[trxIndexNumber] = depositTransaction;
-			trxIndexNumber++;
-		}else {
-			System.out.println("You cannot add new transactions!!!");
-		}
-		
-		
-	}
-
-	public void printTransactions() {
-		for (Transaction trx : transactions) {
-			if (trx != null)
-				System.out.println(trx);
-		}
-
-	}
+	
 }

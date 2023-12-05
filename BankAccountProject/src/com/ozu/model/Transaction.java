@@ -7,6 +7,12 @@ public class Transaction {
 	private double amount;
 	private Date date;
 	
+	public void update(BankAccount acc) {
+		//todo ...
+		
+	}
+	
+	
 	public Transaction() {
 		super();
 	}

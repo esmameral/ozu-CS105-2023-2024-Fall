@@ -16,8 +16,8 @@ public class TestBankAccount {
 		CheckTransaction chTrx = new CheckTransaction(300, "23X5");
 
 		account.post(depTrx1);
-		account.post(depTrx2);
-		account.post(depTrx3);
+//		account.post(depTrx2);
+//		account.post(depTrx3);
 		account.post(witTrx);
 		account.post(chTrx);
 
