@@ -13,7 +13,7 @@ public class BankAccount {
 	private int negativeBalanceCount;
 	private int trxIndexNumber;
 	private Transaction[] transactions;
-
+	
 	public BankAccount() {
 		transactions = new Transaction[4];
 		trxIndexNumber = 0;

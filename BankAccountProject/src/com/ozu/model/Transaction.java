@@ -3,14 +3,11 @@ package com.ozu.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Transaction {
+public abstract class Transaction {
 	private double amount;
 	private Date date;
 	
-	public void update(BankAccount acc) {
-		//todo ...
-		
-	}
+	public abstract void update(BankAccount acc);
 	
 	
 	public Transaction() {

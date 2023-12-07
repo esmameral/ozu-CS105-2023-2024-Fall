@@ -15,6 +15,7 @@ public class DepositTransaction extends Transaction {
 	public void update(BankAccount acc) {
 		acc.deposit(getAmount());
 	}
+
 	
 	
 
