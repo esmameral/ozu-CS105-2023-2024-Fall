@@ -101,7 +101,6 @@ public class BankAccount {
 //				withdraw(trx.getAmount())
 				
 		trx.update(this);
-		
 	}
 	
 	public void printTransactions() {
