@@ -43,7 +43,7 @@ public class BankAccount {
 	public boolean withdraw(double amount) throws InsufficientBalanceException, SecurityException {
 		
 		
-		if(amount>1000000) {
+		if(amount>200000) {
 			throw new SecurityException("You cannot withdraw "+ amount+"  for security reasons");
 
 		}

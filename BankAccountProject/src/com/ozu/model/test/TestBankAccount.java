@@ -34,7 +34,7 @@ public class TestBankAccount {
 		} catch (InsufficientBalanceException e) {
 			System.out.println("InsufficientBalanceException");
 		} catch (com.ozu.model.exception.SecurityException e) {
-			System.out.println("SecurityException");
+			System.out.println("Alert!!! You can't withdraw more than 200000 TL");
 			// alerts...
 		}
 
