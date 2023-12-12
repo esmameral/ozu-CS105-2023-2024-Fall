@@ -1,5 +1,8 @@
 package com.ozu.model;
 
+import com.ozu.model.exception.InsufficientBalanceException;
+import com.ozu.model.exception.SecurityException;
+
 public class WithdrawalTransaction extends Transaction {
 
 	public WithdrawalTransaction(double amount) {
@@ -7,8 +10,10 @@ public class WithdrawalTransaction extends Transaction {
 	}
 
 	@Override
-	public void update(BankAccount acc) {
-		acc.withdraw(getAmount());
+	public void update(BankAccount acc) throws InsufficientBalanceException, SecurityException {
+		
+			acc.withdraw(getAmount());
+		
 	}
 
 	

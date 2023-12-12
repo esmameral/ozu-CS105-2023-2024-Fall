@@ -1,5 +1,8 @@
 package com.ozu.model;
 
+import com.ozu.model.exception.InsufficientBalanceException;
+import com.ozu.model.exception.SecurityException;
+
 public class BankAccount {
 	private static double usdRate = 0;
 	private static double interestRate = 0;
@@ -37,7 +40,17 @@ public class BankAccount {
 		return ownerName + "'s " + balance + " TL account";
 	}
 
-	public boolean withdraw(double amount) {
+	public boolean withdraw(double amount) throws InsufficientBalanceException, SecurityException {
+		
+		
+		if(amount>1000000) {
+			throw new SecurityException("You cannot withdraw "+ amount+"  for security reasons");
+
+		}
+		if(balance<amount) {
+			throw new InsufficientBalanceException("Insufficient Balance. You can only withdraw "+balance+ " TL");
+		}
+		
 		withdrawCount++;
 		double oldBalance = balance;
 		balance = balance - amount;
@@ -94,7 +107,7 @@ public class BankAccount {
 	 * Transaction itself
 	 * 
 	 */
-	public void post(Transaction trx) {
+	public void post(Transaction trx) throws InsufficientBalanceException, SecurityException  {
 //		if(trx instanceof DepositTransaction)
 //			deposit(trx.getAmount())
 //			else if (trx instanceof WithdrawalTransaction)

@@ -3,11 +3,14 @@ package com.ozu.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.ozu.model.exception.InsufficientBalanceException;
+import com.ozu.model.exception.SecurityException;
+
 public abstract class Transaction {
 	private double amount;
 	private Date date;
 	
-	public abstract void update(BankAccount acc);
+	public abstract void update(BankAccount acc) throws InsufficientBalanceException, SecurityException ;
 	
 	
 	public Transaction() {
