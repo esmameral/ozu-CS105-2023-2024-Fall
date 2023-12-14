@@ -6,7 +6,7 @@ import java.util.Date;
 import com.ozu.model.exception.InsufficientBalanceException;
 import com.ozu.model.exception.SecurityException;
 
-public abstract class Transaction {
+public abstract class Transaction implements BankAccountUpdater{
 	private double amount;
 	private Date date;
 	

@@ -1,5 +1,7 @@
 package com.ozu.model;
 
+import java.io.FileNotFoundException;
+
 import com.ozu.model.exception.InsufficientBalanceException;
 import com.ozu.model.exception.SecurityException;
 
@@ -16,7 +18,9 @@ public class BankAccount {
 	private int negativeBalanceCount;
 	private int trxIndexNumber;
 	private Transaction[] transactions;
-	
+	private BankAccountUpdater[] updates;
+	private ContactInfo contactInfo;
+
 	public BankAccount() {
 		transactions = new Transaction[4];
 		trxIndexNumber = 0;
@@ -37,20 +41,19 @@ public class BankAccount {
 	}
 
 	public String toString() {
-		return ownerName + "'s " + balance + " TL account";
+		return ownerName + "'s " + balance + " TL account " + contactInfo.toString();
 	}
 
 	public boolean withdraw(double amount) throws InsufficientBalanceException, SecurityException {
-		
-		
-		if(amount>200000) {
-			throw new SecurityException("You cannot withdraw "+ amount+"  for security reasons");
+
+		if (amount > 200000) {
+			throw new SecurityException("You cannot withdraw " + amount + "  for security reasons");
 
 		}
-		if(balance<amount) {
-			throw new InsufficientBalanceException("Insufficient Balance. You can only withdraw "+balance+ " TL");
+		if (balance < amount) {
+			throw new InsufficientBalanceException("Insufficient Balance. You can only withdraw " + balance + " TL");
 		}
-		
+
 		withdrawCount++;
 		double oldBalance = balance;
 		balance = balance - amount;
@@ -100,29 +103,32 @@ public class BankAccount {
 //			System.out.println("You cannot add new transactions!!!");
 //		}
 //	}
-	
+
 	/*
-	 * Using polymorphism
-	 * We will define only one method. updating balance must be provided by 
-	 * Transaction itself
+	 * Using polymorphism We will define only one method. updating balance must be
+	 * provided by Transaction itself
 	 * 
 	 */
-	public void post(Transaction trx) throws InsufficientBalanceException, SecurityException  {
-//		if(trx instanceof DepositTransaction)
-//			deposit(trx.getAmount())
-//			else if (trx instanceof WithdrawalTransaction)
-//				withdraw(trx.getAmount())
-				
-		trx.update(this);
+	public void post(BankAccountUpdater updater)
+			throws InsufficientBalanceException, SecurityException, FileNotFoundException {
+		updater.update(this);
+		if (trxIndexNumber <= transactions.length - 1) {
+			if (updater instanceof Transaction) {
+				transactions[trxIndexNumber] = (Transaction)updater;
+				trxIndexNumber++;
+			}
+		} else {
+			System.out.println("You cannot add new transactions!!!");
+		}
 	}
-	
+
 	public void printTransactions() {
 		for (Transaction trx : transactions) {
 			if (trx != null)
 				System.out.println(trx);
 		}
 	}
-	
+
 	public double getMaxDeposit() {
 		return maxDeposit;
 	}
@@ -203,7 +209,12 @@ public class BankAccount {
 		this.transactions = transactions;
 	}
 
-	
+	public ContactInfo getContactInfo() {
+		return contactInfo;
+	}
 
-	
+	public void setContactInfo(ContactInfo contactInfo) {
+		this.contactInfo = contactInfo;
+	}
+
 }

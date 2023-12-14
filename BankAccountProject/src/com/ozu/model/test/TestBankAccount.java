@@ -36,6 +36,9 @@ public class TestBankAccount {
 		} catch (com.ozu.model.exception.SecurityException e) {
 			System.out.println("Alert!!! You can't withdraw more than 200000 TL");
 			// alerts...
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			// alerts...
 		}
 
 	}
