@@ -43,6 +43,12 @@ public abstract class Transaction implements BankAccountUpdater{
 	public String toString() {
 		return "A $"+amount +" "+this.getClass().getSimpleName()+" Tr Date:"+formatDate();
 	}
+
+
+	@Override
+	public boolean isTransaction() {
+		return true;
+	}
 	
 	
 	

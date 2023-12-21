@@ -65,4 +65,20 @@ public class ChangeContactInfo implements BankAccountUpdater{
 		
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Contact Changed[newAddress=" + newAddress + ", newPhoneNumber=" + newPhoneNumber + 
+				", oldAddress="
+				+ oldAddress + ", oldPhoneNumber=" + oldPhoneNumber + ", createDate=" + createDate + "]";
+	}
+
+
+
+	@Override
+	public boolean isTransaction() {
+		return false;
+	}
+
 }

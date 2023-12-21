@@ -3,6 +3,8 @@ package week12.examples;
 public class Student implements Comparable<Student> {
 	private int id;
 	private String name;
+	private String surname;
+	
 
 	public int getId() {
 		return id;
@@ -20,15 +22,16 @@ public class Student implements Comparable<Student> {
 		this.name = name;
 	}
 
-	public Student(int id, String name) {
+	public Student(int id, String name, String surname) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.surname=surname;
 	}
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + "]";
+		return "Student [id=" + id + ", name=" + name + " surname="+surname+"]";
 	}
 
 	@Override
@@ -48,7 +51,7 @@ public class Student implements Comparable<Student> {
 	
 	public int compareTo(Student o) {
 		
-		return this.getName().compareTo(o.getName());
+		return this.getSurname().compareTo(o.getSurname());
 	}
 
 	@Override
@@ -71,6 +74,14 @@ public class Student implements Comparable<Student> {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 }

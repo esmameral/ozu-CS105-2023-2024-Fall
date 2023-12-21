@@ -28,5 +28,15 @@ public class ChangeOwner implements BankAccountUpdater {
 		
 		return new Date();
 	}
+	
+	public String toString() {
+		return "Owner name changed. Old owner is "+oldOwner+" new owner is "+newOwner;
+	}
+
+	@Override
+	public boolean isTransaction() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

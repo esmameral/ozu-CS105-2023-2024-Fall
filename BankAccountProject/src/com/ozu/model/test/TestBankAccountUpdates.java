@@ -33,6 +33,12 @@ public class TestBankAccountUpdates {
 		
 		
 		System.out.println(account);
+		
+		System.out.println("*** TRANSACTIONS ***");
+		
+		account.printTransactions();
+		System.out.println("*** ALL BANK ACCOUNT UPDATES ***");
+		account.printAllUpdates();
 
 	}
 

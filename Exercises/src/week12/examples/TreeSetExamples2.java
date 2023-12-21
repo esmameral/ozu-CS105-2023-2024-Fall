@@ -10,9 +10,9 @@ public class TreeSetExamples2 {
 		
 		//SortedSet<String> names = new TreeSet<String>();
 		TreeSet<Student> students = new TreeSet<Student>();
-		Student s1=new Student(123,"Ayse");
-		Student s2=new Student(311,"Zehra");
-		Student s3=new Student(12,"Osman");
+		Student s1=new Student(123,"Ayse","Demir");
+		Student s2=new Student(311,"Zehra","Kara");
+		Student s3=new Student(12,"Osman","Can");
 		students.add(s1);
 		students.add(s2);
 		students.add(s3);

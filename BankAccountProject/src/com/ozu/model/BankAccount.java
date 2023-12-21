@@ -1,6 +1,7 @@
 package com.ozu.model;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import com.ozu.model.exception.InsufficientBalanceException;
 import com.ozu.model.exception.SecurityException;
@@ -16,14 +17,14 @@ public class BankAccount {
 	private int withdrawCount;
 	private double maxDeposit;
 	private int negativeBalanceCount;
-	private int trxIndexNumber;
-	private Transaction[] transactions;
-	private BankAccountUpdater[] updates;
+
+	private ArrayList<Transaction> transactions;
+	private ArrayList<BankAccountUpdater> updates;
 	private ContactInfo contactInfo;
 
 	public BankAccount() {
-		transactions = new Transaction[4];
-		trxIndexNumber = 0;
+		transactions = new ArrayList<Transaction>();
+		updates=new ArrayList<BankAccountUpdater>();
 	}
 
 	public BankAccount(int accountNumber, String ownerName) {
@@ -112,15 +113,12 @@ public class BankAccount {
 	public void post(BankAccountUpdater updater)
 			throws InsufficientBalanceException, SecurityException, FileNotFoundException {
 		updater.update(this);
-		if (trxIndexNumber <= transactions.length - 1) {
-			if (updater instanceof Transaction) {
-				transactions[trxIndexNumber] = (Transaction)updater;
-				trxIndexNumber++;
-			}
-		} else {
-			System.out.println("You cannot add new transactions!!!");
+		updates.add(updater);
+		if (updater.isTransaction()) {
+			transactions.add((Transaction) updater);
 		}
 	}
+
 
 	public void printTransactions() {
 		for (Transaction trx : transactions) {
@@ -201,13 +199,7 @@ public class BankAccount {
 		BankAccount.interestRate = interestRate;
 	}
 
-	public Transaction[] getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(Transaction[] transactions) {
-		this.transactions = transactions;
-	}
+	
 
 	public ContactInfo getContactInfo() {
 		return contactInfo;
@@ -215,6 +207,21 @@ public class BankAccount {
 
 	public void setContactInfo(ContactInfo contactInfo) {
 		this.contactInfo = contactInfo;
+	}
+
+	public ArrayList<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(ArrayList<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+
+	public void printAllUpdates() {
+		for (BankAccountUpdater anUpdate : updates) {
+			System.out.println(anUpdate);
+		}
+		
 	}
 
 }

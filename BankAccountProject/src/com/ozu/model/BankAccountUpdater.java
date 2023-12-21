@@ -9,5 +9,6 @@ import com.ozu.model.exception.SecurityException;
 public interface BankAccountUpdater {
 	public void update(BankAccount acc) throws FileNotFoundException, InsufficientBalanceException, SecurityException ;
 	public Date getDate() ;
+	public boolean isTransaction();
 
 }
