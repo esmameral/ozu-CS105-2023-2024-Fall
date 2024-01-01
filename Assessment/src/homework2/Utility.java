@@ -1,28 +1,26 @@
 package homework2;
 
-import java.util.Iterator;
-
 public class Utility {
 
 	public boolean isPrimeNumber(int number) {
-		for (int j = 2; j <= number/2; j++) {
-			if(number%j==0)
+		for (int j = 2; j <= number / 2; j++) {
+			if (number % j == 0)
 				return false;
 		}
 		return true;
 	}
 
 	public void printMinAndMaxPrimeNumbers(int number1, int number2) {
-		int max=0;
-		int min=0;
-		for (int i=number1;i<=number2;i++) {
-			if(isPrimeNumber(i)) {
-				max=i;
-				if(min==0)
-					min=i;
+		int max = 0;
+		int min = 0;
+		for (int i = number1; i <= number2; i++) {
+			if (isPrimeNumber(i)) {
+				max = i;
+				if(min == 0)
+					min = i;
 			}
 		}
-		System.out.println("Min prime number is:"+min+" Max prime number is: "+max);
+		System.out.println("Min prime number is:" +min+" Max prime number is: "+max);
 	}
 	public int findLetterCount(String text, String letter) {
 		int count=0;

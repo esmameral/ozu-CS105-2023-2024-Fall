@@ -15,6 +15,7 @@ public class Question2_SimpleSolution {
 			}
 			System.out.println();
 		}
-	}
+	
 
+}
 }
