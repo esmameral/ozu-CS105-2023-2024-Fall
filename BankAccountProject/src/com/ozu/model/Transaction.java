@@ -10,7 +10,7 @@ public abstract class Transaction implements BankAccountUpdater{
 	private double amount;
 	private Date date;
 	
-	public abstract void update(BankAccount acc) throws InsufficientBalanceException, SecurityException ;
+	public abstract void update(BankAccount acc) throws SecurityException, InsufficientBalanceException  ;
 	
 	
 	public Transaction() {

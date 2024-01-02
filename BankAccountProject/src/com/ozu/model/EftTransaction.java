@@ -40,7 +40,7 @@ public class EftTransaction extends WithdrawalTransaction{
 
 
 	@Override
-	public void update(BankAccount acc) throws InsufficientBalanceException, SecurityException {
+	public void update(BankAccount acc) throws SecurityException, InsufficientBalanceException  {
 		
 			acc.withdraw(getAmount()+fee);
 		

@@ -1,6 +1,5 @@
 package com.ozu.model;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import com.ozu.model.exception.InsufficientBalanceException;
@@ -45,7 +44,7 @@ public class BankAccount {
 		return ownerName + "'s " + balance + " TL account " + contactInfo.toString();
 	}
 
-	public boolean withdraw(double amount) throws InsufficientBalanceException, SecurityException {
+	public boolean withdraw(double amount) throws SecurityException, InsufficientBalanceException   {
 
 		if (amount > 200000) {
 			throw new SecurityException("You cannot withdraw " + amount + "  for security reasons");
@@ -111,7 +110,7 @@ public class BankAccount {
 	 * 
 	 */
 	public void post(BankAccountUpdater updater)
-			throws InsufficientBalanceException, SecurityException, FileNotFoundException {
+			throws Exception {
 		updater.update(this);
 		updates.add(updater);
 		if (updater.isTransaction()) {

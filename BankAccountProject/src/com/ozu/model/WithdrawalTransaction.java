@@ -10,7 +10,7 @@ public class WithdrawalTransaction extends Transaction {
 	}
 
 	@Override
-	public void update(BankAccount acc) throws InsufficientBalanceException, SecurityException {
+	public void update(BankAccount acc) throws SecurityException, InsufficientBalanceException  {
 		
 			acc.withdraw(getAmount());
 		
