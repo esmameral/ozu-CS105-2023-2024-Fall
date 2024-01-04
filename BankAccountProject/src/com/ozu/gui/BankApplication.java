@@ -21,7 +21,10 @@ import javax.swing.JTextField;
 
 import com.ozu.model.BankAccount;
 import com.ozu.model.DepositTransaction;
+import com.ozu.model.SalaryPayment;
+import com.ozu.model.Transaction;
 import com.ozu.model.WithdrawalTransaction;
+import com.ozu.model.util.DateUtil;
 
 /**
  * amountField = new JTextField(); amountField.setSize(fieldDimension);
@@ -78,7 +81,7 @@ public class BankApplication extends JFrame {
 		formPanel.add(accountNumberLabel);
 		formPanel.add(accountNumberField);
 		formPanel.add(trxTypeLabel);
-		String[] trxTypes= {"Withdraw","Deposit","Bill Payment"};
+		String[] trxTypes= {"Withdraw","Deposit","Salary Payment"};
 		trxComboBox=new JComboBox<String>(trxTypes);
 		
 		formPanel.add(trxComboBox);
@@ -90,8 +93,6 @@ public class BankApplication extends JFrame {
 		balanceField.setEditable(false);
 		formPanel.add(balanceLabel);
 		formPanel.add(balanceField);
-		
-
 		getContentPane().add(formPanel);
 
 		// Button Panel Definition
@@ -101,7 +102,7 @@ public class BankApplication extends JFrame {
 		postButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("post button");
+				messageLabel.setText("");
 				double amount=Double.parseDouble(amountField.getText());
 				String trxType=(String)trxComboBox.getSelectedItem();
 				if(trxType.equals("Withdraw")) {
@@ -109,6 +110,7 @@ public class BankApplication extends JFrame {
 					try {
 						account.post(trx);
 						balanceField.setText(account.getBalance()+"");
+						messageLabel.setText("Transaction completed successfully");
 					} catch (Exception e1) {
 						messageLabel.setText(e1.getMessage());
 					}
@@ -117,13 +119,20 @@ public class BankApplication extends JFrame {
 					try {
 						account.post(trx);
 						balanceField.setText(account.getBalance()+"");
+						messageLabel.setText("Transaction completed successfully");
 					} catch (Exception e1) {
-						System.out.println(e1.getMessage());
-						
+						messageLabel.setText(e1.getMessage());
 					}
 					
 				}else {
-					//Bill Payment
+					SalaryPayment trx=new SalaryPayment("Ozu Comp", 2023, 12,amount);
+					try {
+						account.post(trx);
+						balanceField.setText(account.getBalance()+"");
+						messageLabel.setText("Transaction completed successfully");
+					} catch (Exception e1) {
+						messageLabel.setText(e1.getMessage());
+					}
 				}
 				amountField.setText("");
 						
@@ -139,18 +148,20 @@ public class BankApplication extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				 //headers for the table
 		        String[] columns = new String[] {
-		            "Id", "Name", "Hourly Rate", "Part Time"
-		        };
+		            "Date & Time", "Transaction Type", "Amount"};
 		         
+		        int size=account.getTransactions().size();
+		        
 		        //actual data for the table in a 2d array
-		        Object[][] data = new Object[][] {
-		            {1, "John", 40.0, false },
-		            {2, "Rambo", 70.0, false },
-		            {3, "Zorro", 60.0, true },
-		            {3, "Zorro", 60.0, true },
-		            {3, "Zorro", 60.0, true },
-		            {3, "Zorro", 60.0, true },
-		        };
+		        String[][] data = new String[size][3] ;
+		       for (int i = 0; i < account.getTransactions().size(); i++) {
+				Transaction trx = account.getTransactions().get(i);
+				data[i][0]=DateUtil.convertDateToString(trx.getDate());
+				data[i][1]=trx.getClass().getSimpleName();
+				data[i][2]=trx.getAmount()+"";
+				
+			}
+		        		
 		        //create table with data
 		        
 		        JTable table = new JTable(data, columns);
@@ -159,7 +170,7 @@ public class BankApplication extends JFrame {
 		        //add the table to the frame
 		        
 		        //add(pane);
-		        getContentPane().add(pane);
+		        add(pane);
 				
 			}
 		});

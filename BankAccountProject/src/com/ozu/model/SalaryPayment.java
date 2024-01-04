@@ -5,6 +5,7 @@ public class SalaryPayment extends DepositTransaction{
 	private int year;
 	private int month;
 
+	
 	public SalaryPayment(String company, int year, int month,double amount) {
 		super(amount);
 		this.company = company;
